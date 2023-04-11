@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/list.css">
+    <link rel="stylesheet" href="css/delails.css">
+    <script src="js/vue.min.js"></script>
+    <script src="js/axios.js"></script>
+    <script src="js/userManager.js"></script>
+    <script src="js/element.js"></script>
+    <link rel="stylesheet" href="css/cs.css">
+    <script src="js/public.js"></script>
+</head>
+
+<body>
+
+    <div id="newer">
+        <!-- 头 -->
+        <header class="header">
+            <!-- 顶部 -->
+            <div class="topheader">
+                <div class="topbarheader fr">
+                    <div class="topbar">
+                        <a :style="'color:'+ color+';'" @click="sendLogin">{{loginUser}}</a>
+                        &nbsp;或&nbsp;
+                        <a href="rigester.html">注册</a>
+                        &nbsp;ANTA会员
+                    </div>
+                    <div class="topbar-car">
+                        <div class="span" id="span1"><span id="num"></span>{{res.length}}</div>
+                        <a href="cart.html" class="topbar-icon"></a>
+                        <i></i>
+                    </div>
+                    <div class="topbar-ser" style="margin-right: 30px;">
+                        <a @click="submit()" class="topbar-icon"></a>
+                    </div>
+                    <div class="topbar-en">
+                        <a @click="EN()" class="topbar-icon">EN</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 导航栏 -->
+            <div class="nav-header">
+
+                <!-- logo -->
+                <div class="logo-header fl" style="margin-left: 126px;">
+                    <div class="logo-inner">
+                        <a href="index.html">
+                            <img src="https://img.fishfay.com/theme/images/logo/logo-anta-r-02.svg" alt="">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 文字 -->
+                <ul class="nav-list fr">
+
+                    <li class="nav-item" v-for="tl in isfenlen" @click="sendourself(tl.tid)">
+                        <a>{{tl.title}}</a>
+                    </li>
+                    <li class="nav-item last">
+
+                    </li>
+                    <div class="nav-sear">
+                        <a href=" " class="nav-btn"></a>
+                        <input type="text" placeholder="搜索" autocomplete="off" class="nav-input">
+                    </div>
+                </ul>
+
+
+                <div class="erjione">
+                    <div>
+                        <ul>
+                            <li class="erji-one">所有鞋类</li>
+                            <li>运动鞋</li>
+                            <li>跑鞋</li>
+                            <li>篮球鞋</li>
+                            <li>休闲鞋</li>
+                            <li>板鞋</li>
+                            <li>户外综训鞋</li>
+                        </ul>
+                        <ul>
+                            <li class="erji-one">所有服饰</li>
+                            <li>羽绒服</li>
+                            <li>套头卫衣</li>
+                            <li>外套/夹克</li>
+                            <li>长裤</li>
+                            <li>短袖</li>
+                            <li>运动短裤</li>
+                        </ul>
+                        <ul>
+                            <li class="erji-one">所有配件</li>
+                            <li>包类</li>
+                            <li>运动袜子</li>
+                        </ul>
+                        <ul>
+                            <li class="erji-one">运动项目</li>
+                            <li>跑步</li>
+                            <li>篮球</li>
+                            <li>综训</li>
+                            <li>生活</li>
+                            <li>健身</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="erjitwo erjione">
+                    <div>
+                        <ul style="margin-left: 40px;">
+                            <li class="erji-one">所有鞋类</li>
+                            <li>跑鞋</li>
+                            <li>休闲鞋</li>
+                            <li>板鞋</li>
+                            <li>棉鞋</li>
+                        </ul>
+                        <ul>
+                            <li class="erji-one">所有服饰</li>
+                            <li>羽绒服</li>
+                            <li>套头卫衣</li>
+                            <li>外套/夹克</li>
+                            <li>长裤</li>
+                            <li>短袖</li>
+                            <li>运动短裤</li>
+                        </ul>
+                        <ul>
+                            <li class="erji-one">所有配件</li>
+                            <li>包类</li>
+                            <li>运动袜子</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="erjithree erjione">
+                    <div>
+                        <ul style="margin-left: 40px;">
+                            <li class="erji-one">所有商品</li>
+                            <li>新品上市</li>
+                            <li>男中大童</li>
+                            <li>女中大童</li>
+                            <li>男小童</li>
+                            <li>女小童</li>
+                            <li>婴童</li>
+                        </ul>
+                        <ul style="margin-left: 40px;">
+                            <li class="erji-one">所有鞋类</li>
+                            <li>跑鞋</li>
+                            <li>休闲鞋</li>
+                            <li>板鞋</li>
+                            <li>棉鞋</li>
+                            <li>足球鞋</li>
+                        </ul>
+                        <ul>
+                            <li class="erji-one">所有服饰</li>
+                            <li>羽绒服</li>
+                            <li>套头卫衣</li>
+                            <li>外套/夹克</li>
+                            <li>长裤</li>
+                            <li>短袖</li>
+                            <li>运动短裤</li>
+                        </ul>
+                        <ul>
+                            <li class="erji-one">所有配件</li>
+                            <li>包类</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+
+
+
+
+
+
+
+        <!-- 内容 -->
+
+        <div class="main-cont">
+            <div class="list-cont">
+                <div class="sele-box fl">
+                    <div class="sele-top">
+                        <span>筛选</span>
+                        <a href=" " class="sele-reset fr">重置</a>
+                    </div>
+                    <!-- 大类 -->
+                    <div class="sele-item">
+                        <div class="sele-cate">
+                            <span>大类</span>
+                            <i class="line-arrow fr"></i>
+                        </div>
+                        <ul class="sele-tag">
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    鞋类
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 尺码 -->
+                    <div class="sele-item">
+                        <div class="sele-cate">
+                            <span>尺码</span>
+                            <i class="line-arrow fr goods-size"></i>
+                        </div>
+                        <ul class="sele-tag goods-size-next">
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    39
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    40
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    41
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    42
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    43
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    43.5
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    44
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    44.5
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    45
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    45.5
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    46
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    999
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 季节 -->
+                    <div class="sele-item">
+                        <div class="sele-cate">
+                            <span>季节</span>
+                            <i class="line-arrow fr goods-season"></i>
+                        </div>
+                        <ul class="sele-tag">
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    春季
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    夏季
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    秋季
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    冬季
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 年份 -->
+                    <div class="sele-item">
+                        <div class="sele-cate">
+                            <span>年份</span>
+                            <i class="line-arrow fr goods-year"></i>
+                        </div>
+                        <ul class="sele-tag">
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    2022
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    2021
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    2020
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    1800f
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 系列 -->
+                    <div class="sele-item">
+                        <div class="sele-cate">
+                            <span>系列</span>
+                            <i class="line-arrow fr goods-series"></i>
+                        </div>
+                        <ul class="sele-tag">
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    综训系列
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    篮球系列
+                                </a>
+                            </li>
+                            <li>
+                                <a href=" ">
+                                    <i></i>
+                                    跑步系列
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 商品 -->
+                <div class="list-wrp">
+                    <div class="list-body">
+                        <div class="list-topl fl">
+                            <div class="cate-title">
+                                {{sex}}商品分类
+                                <span>(12)</span>
+                            </div>
+                            <div class="res-tag">
+
+                            </div>
+                        </div>
+                        <div class="list-topr fr">
+                            <div class="fil-ord">
+                                <el-col :span="12">
+                                    <el-dropdown trigger="click"
+                                        style="width: 125px ;height: 30px; border: 1px solid gray; padding-top: 5px;">
+                                        <span class="el-dropdown-link">
+                                            商品排序<i class="el-icon-arrow-down el-icon--right"
+                                                style="margin-left: 25px;"></i>
+                                        </span>
+                                        <el-dropdown-menu slot="dropdown" style="width: 7%;">
+                                            <el-dropdown-item><a @click="upprice">升序排序</a></el-dropdown-item>
+                                            <el-dropdown-item><a @click="downprice">降序排序</a></el-dropdown-item>
+                                            <el-dropdown-item><a @click="sale">销量排序</a></el-dropdown-item>
+                                        </el-dropdown-menu>
+                                    </el-dropdown>
+                                </el-col>
+                            </div>
+                            <!-- 上分页 -->
+
+                        </div>
+                        <!-- 商品内容 -->
+                        <ul class="goods-list">
+                            <!-- <li class="goods-item" v-for="sp in shopinfoboy" v-if="">
+                            <div class="goods-body">
+                                <a href=" " >
+                                    <img :src="'img/boy/'+sp.img+'.jpg'" style="display: inline;" class="goods-pic" alt="">
+                                </a>
+                                <a href=" " class="goods-name">{{sp.context}}</a>
+                                <a href=" " class="goods-price">
+                                    <span>￥{{sp.price}}</span>
+                                </a>
+                            </div>
+                        </li> -->
+                            <li class="goods-item" v-for="girl in shopinfogirl" @click="send(girl.id)">
+                                <div class="goods-body">
+                                    <a>
+                                        <img :src="girl.img" name="titsex" style="display: inline;" class="goods-pic"
+                                            alt="">
+                                    </a>
+                                    <a class="goods-name">{{girl.context}}</a>
+                                    <a class="goods-price">
+                                        <span>￥{{girl.price}}</span>
+                                    </a>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <!-- 尾部 -->
+        <footer class="footer ">
+            <div class="ft-inner w1280">
+                <div class="ft-slo fl">
+                    <img src="https://img.fishfay.com/theme/images/logo/slogan-anta-r.svg" alt="">
+                </div>
+                <div class="ft-main fr">
+                    <ul class="ft-link">
+                        <li>
+                            <a href=" ">安踏海外</a>
+                        </li>
+                        <li>
+                            <a href=" ">安踏投资者关系</a>
+                        </li>
+                    </ul>
+                    <div class="ft-com" style="height: auto;">
+                        <span>Copyright(C) 2020 by www.ANTA.com</span>
+                        <span>©安踏体育用品有限公司版权所有</span>
+                        <a href=" ">营业执照</a>
+                        <a href=" ">开户许可证</a>
+                        <br>
+                        <a href=" ">闽ICP备11020421号-1</a>
+                        <a href=" ">闽公网安备35058202000423号</a>
+                    </div>
+                    <ul class="ft-link">
+                        <li>
+                            <a href=" ">安踏儿童</a>
+                        </li>
+                        <li>
+                            <a href=" ">Fila</a>
+                        </li>
+                        <li>
+                            <a href=" ">Kolon Sport</a>
+                        </li>
+                        <li>
+                            <a href=" ">Descente</a>
+                        </li>
+                        <li>
+                            <a href=" ">Sprandi</a>
+                        </li>
+                        <li>
+                            <a href=" ">Kingkow</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- 侧边 -->
+        <div class="webcover">
+            <div class="goto-top" onclick="goTop()"></div>
+            <a href="cart.html" class="covercar"></a>
+            <a @click="submit()" class="coverkefu"></a>
+        </div>
+    </div>
+
+
+</body>
+<script>
+    (() => {
+        const userManager = createUserManager();
+        let v = new Vue({
+            el: "#newer",
+            data: {
+                sex: "",
+                color: "",
+                loginUser: "",
+                isfenlen: [{ tid: 2, title: "男子" }, { tid: 0, title: "女子" }, { tid: 1, title: "儿童" }],
+                tid: 0,
+                name: null,
+                shopinfogirl: {},
+                res: [],
+
+            },
+            methods: {
+
+                open() {
+                    this.$message('请登录');
+                },
+                openLogin() {
+                    window.location = "login.html"
+                },
+                upprice() {
+                    this.shopinfogirl.sort((a, b) => {
+                        return a.price - b.price;
+                    })
+                },
+                sale() {
+                    this.shopinfogirl.sort((a, b) => {
+                        return b.id - a.id;
+                    })
+                },
+                downprice() {
+                    this.shopinfogirl.sort((a, b) => {
+                        return b.price - a.price;
+                    })
+                },
+                sendLogin() {
+                    if (this.loginUser != "登入") {
+
+                    } else {
+                        this.openLogin()
+                    }
+                },
+
+                send(id) {
+                    if (this.loginUser != "登入") {
+                        console.log(id);
+                        window.location = "details.html?pid=" + id;
+                    } else {
+                        this.open()
+                        setTimeout(this.openLogin, 2500)
+                    }
+                },
+                sendourself(tid) {
+                    document.location = "list.html?tid=" + tid
+                },
+                submit() {
+                    this.$message({
+                        type: "warning",
+                        message: "此功能正在维护！"
+                    })
+                },
+                EN() {
+                    this.$message({
+                        type: "warning",
+                        message: "此功能暂未上线！敬请期待！"
+                    })
+                }
+
+            },
+            created() {
+
+                axios.get("http://127.0.0.1:5502/json/allShop.json").then((b) => {
+                    const data = b.data
+                    for (arrayshop of data)
+                        if (this.tid == arrayshop.pid) {
+                            this.shopinfogirl = arrayshop.shop
+                        }
+                });
+                // const url = window.location.href;
+                //   const params = url.split("?")[1];
+                //   this.fenlei = params.split("=")[1];
+
+            },
+            mounted() {
+                const url = window.location.href;
+                const params = url.split("?")[1];
+                this.tid = params.split("=")[1];
+                console.log(this.tid);
+
+                if (this.tid == 0) {
+                    this.sex = "女子"
+                } else if (this.tid == 1) {
+                    this.sex = "儿童"
+                } else {
+                    this.sex = "男子"
+                }
+
+                if (userManager.loginUser) {
+                    this.color = "red"
+                    this.loginUser = "欢迎" + userManager.loginUser.phone;
+                } else {
+                    this.loginUser = "登入"
+                }
+
+                //计算购物车数量,使其能更好的判断是否在界面上显示
+                if (localStorage.getItem("girl") != null) {
+                    document.getElementById("span1").style.display = "block";
+                    var a = localStorage.getItem("girl");
+                    var res = JSON.parse(a);
+                    this.res = res;
+                    console.log(res.length);
+                } else {
+                    console.log("不存在购物车，购物车个数隐藏");
+                }
+
+            },
+        })
+    })();
+</script>
+
+</html>

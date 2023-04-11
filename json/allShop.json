@@ -1,0 +1,47 @@
+[
+    {
+        "pid":0,"name":"女子","shop":[{"id":1, "img": "img/girl/1.jpg", "price": 699.00, "context": "【关晓彤同款】【安踏冠军系列】安踏星标系列C202女休闲鞋" },
+    {"id":2,"img": "img/girl/2.jpg", "price": 699.00, "context": "【安踏冠军健身训练系列】[日照金山] 安踏星202女子复古跑鞋" },
+    {"id":3, "img": "img/girl/3.jpg", "price": 699.00, "context": "【谷爱凌同款】【安踏冠军系列】安踏2020年东京奥运会中国体育代表团女子领奖鞋纪念版" },
+    { "id":4,"img": "img/girl/4.jpg", "price":439.00, "context": "安踏中国冰雪力量训练系列女综训鞋" },
+    {"id":5, "img": "img/girl/5.jpg", "price":399.00, "context": "安踏女烈焰2.0运动鞋时尚生活秋冬2021新款" },
+    {"id":6, "img": "img/girl/6.jpg", "price":639.00, "context": "安踏女可口可乐联名时尚休闲老爹鞋2021新款" },
+    {"id":7, "img": "img/girl/7.jpg", "price": 499.00, "context": "安踏女鞋马赫专业竞速跑鞋2021新款" },
+    {"id":8, "img": "img/girl/8.jpg", "price": 469.00, "context": "安踏女鞋AT91休闲鞋2021新款" },
+    {"id":9, "img": "img/girl/9.jpg", "price": 369.00, "context": "安踏女鞋不止步跑鞋2021新款" },
+    {"id":10, "img": "img/girl/10.jpg", "price": 599.00, "context": "安踏女鞋AT91弹射力科技休闲鞋2021新款" },
+    {"id":11, "img": "img/girl/11.jpg", "price": 299.00, "context": "安踏女鞋板鞋小白鞋2021新款"},
+    {"id":12, "img": "img/girl/12.jpg", "price": 369.00, "context": "安踏女鞋板鞋复古篮球文化鞋2021新款" }]
+    },
+
+    {
+        "pid":1,"name":"儿童","shop":[{"id":13, "img": "img/girl/13.jpg", "price": 299.00, "context": "女大童老爹族群生活系列休闲鞋" },
+    {"id":14,"img": "img/girl/14.jpg", "price": 299.00, "context": "男大童老爹族群生活系列休闲鞋" },
+    {"id":15, "img": "img/girl/15.jpg", "price": 269.00, "context": "男婴童天丝护足鞋族群跑步系列跑鞋" },
+    { "id":16,"img": "img/girl/16.jpg", "price":349.00, "context": "男大童板鞋族群生活系列板鞋" },
+    {"id":17, "img": "img/girl/17.jpg", "price":349.00, "context": "女大童板鞋族群生活系列板鞋" },
+    {"id":18, "img": "img/girl/18.jpg", "price":239.00, "context": "男小童潮流族群时尚系列休闲鞋" },
+    {"id":19, "img": "img/girl/19.jpg", "price": 239.00, "context": "男小童潮流族群时尚系列休闲鞋" },
+    {"id":20, "img": "img/girl/20.jpg", "price": 299.00, "context": "女大童板鞋族群生活系列板鞋" },
+    {"id":21, "img": "img/girl/21.jpg", "price": 299.00, "context": "男大童板鞋族群生活系列板鞋" },
+    {"id":22, "img": "img/girl/22.jpg", "price": 34900, "context": "男大童潮流族群生活系列休闲鞋" },
+    {"id":23, "img": "img/girl/23.jpg", "price": 249.00, "context": "男大童生活系列板鞋"},
+    {"id":15, "img": "img/girl/24.jpg", "price": 369.00, "context": "女大童生活系列板鞋" }]
+},
+    
+    
+{
+    "pid":2,"name":"男子","shop":[{"id":25,"img": "img/girl/25.jpg", "price": 799.00, "context": "【安踏冠军健身训练系列】安踏国家队同款科技星火男子氮科技缓震跑步训练跑鞋" },
+    {"id":26, "img": "img/girl/26.jpg", "price": 699.00, "context": "【安踏冠军健身训练系列】[日照金山] 安踏星202男子复古跑鞋" },
+    { "id":27,"img": "img/girl/27.jpg", "price":699.00, "context": "【安踏冠军系列】安踏星标系列C202男休闲鞋" },
+    {"id":28, "img": "img/girl/28.jpg", "price": 799.00, "context": "【安踏冠军系列】安踏星标系列星户外男运动休闲鞋" },
+    {"id":29, "img": "img/girl/29.jpg", "price": 799.00, "context": "【安踏冠军系列】安踏星标系列星程男子休闲鞋" },
+    {"id":30, "img": "img/girl/30.jpg", "price": 599.00, "context": "【安踏冠军运动文化系列】安踏男子力简休闲鞋" },
+    {"id":31, "img": "img/girl/31.jpg", "price": 799.00, "context": "【安踏冠军运动文化系列】安踏KG复刻高帮版氮科技男子板鞋" },
+    {"id":32, "img": "img/girl/32.jpg", "price": 799.00, "context": "【安踏冠军运动文化系列】安踏KG复刻高帮版氮科技男子板鞋" },
+    {"id":33, "img": "img/girl/33.jpg", "price": 539.00, "context": "安踏男鞋霸道3.0板鞋2021新款" },
+    {"id":34, "img": "img/girl/34.jpg", "price": 439.00, "context":" 安踏男子篮球鞋高帮运动冬季2021新款"},
+    {"id":35, "img": "img/girl/35.jpg", "price": 499.00, "context": "安踏男鞋汤普森KT系列见山1代篮球鞋2021新款kt" },
+    {"id":36, "img": "img/girl/36.jpg", "price": 20099999999.00, "context": "【安踏实训冠军王豪联名款】安踏国家队同款科技星火男子氮科技跑步训练跑鞋" }]
+}
+]

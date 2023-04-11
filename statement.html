@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>结算</title>
+    <link rel="stylesheet" href="css/statement.css">
+    <script src="js/vue.js"></script>
+    <script src="js/element.js"></script>
+    <link rel="stylesheet" href="css/cs.css">
+    <script src="js/userManager.js"></script>
+    <script src="js/public.js"></script>
+    <script src="js/axios.js"></script>
+</head>
+
+<body>
+
+    <div id="newer">
+        <!-- 头 -->
+        <header class="header">
+
+            <!-- 顶部 -->
+            <div class="topheader">
+                <div class="topbarheader fr">
+                    <div class="topbar">
+                        <a :style="'color:'+color+';'" @click="sendLogin">{{loginUser}}</a>
+                        &nbsp;或&nbsp;
+                        <a href="#none">注册</a>
+                        &nbsp;ANTA会员
+                    </div>
+                    <div class="topbar-car">
+                        <a href="cart.html" class="topbar-icon"></a>
+                        <i></i>
+                    </div>
+                    <div class="topbar-ser" style="margin-right: 30px;">
+                        <a @click="submit()" class="topbar-icon"></a>
+                    </div>
+                    <div class="topbar-en">
+                        <a @click="EN()" class="topbar-icon">EN</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 导航栏 -->
+            <div class="nav-header">
+
+                <!-- logo -->
+                <div class="logo-header fl" style="margin-left: 126px;">
+                    <div class="logo-inner">
+                        <a href="index.html">
+                            <img src="https://img.fishfay.com/theme/images/logo/logo-anta-r-02.svg" alt="">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 文字 -->
+                <ul class="nav-list fr">
+                    <li class="nav-item" v-for="tl in isfenlen" @click="send(tl.id)">
+                        <a href="#">{{tl.title}}</a>
+                    </li>
+
+                    <li class="nav-item last">
+
+                    </li>
+                    <div class="nav-sear">
+                        <a href="#none" class="nav-btn"></a>
+                        <input type="text" placeholder="搜索" autocomplete="off" class="nav-input">
+                    </div>
+                </ul>
+            </div>
+        </header>
+
+
+        <!-- 内容 -->
+        <div id="center" style="border:none">
+            <div id="centermain">
+                <div id="top" style="border: 0px;">
+                    <h2>结算</h2>
+                </div>
+                <div id="left">
+                    <div id="lefttop">
+                        <div id="bg">收货地址</div>
+                        <div id="label">
+                            <div id="shr" style="border: none;">
+                                <div style="float: left;color: #000; color: gray; ;">收货人：</div>&nbsp;&nbsp;张三
+                                &nbsp;187xxxxxxxx
+                                <div style="float: right; "><button
+                                        style="background-color: #4c4c4c; height: 30px; color: white;border: 0px;">默认地址</button>
+                                </div>
+                            </div>
+                            <div id="shr" style="border: none;">
+                                <div style="float: left;color: #000;color: gray; border: none;">地址：</div>
+                                &nbsp;&nbsp;湖南省-长沙市-雨花区 长沙民政职业技术学院
+                                <div style="float: right;color: grey;">编辑|更多</div>
+                            </div>
+                            <div id="add">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="leftmain">
+                        <div style="color: white;background-color: #000;height: 20px;padding: 20px 15px;">商品明细</div>
+                        <div id="shangping1" style="height: 85px;">
+                            <img :src="shopinfogirl.img" style="width: 100px;height: 85px; float: left;">
+                            <h3 style="font-weight: lighter;">运动鞋</h3>
+                            <div style="height: 40px; line-height: 40px; color: gray;">颜色：黑色</div>
+                            <div style="color: gray;">数量：1</div>
+                            <div style="float: right; color: gray;">￥{{shopinfogirl.price}}</div>
+                        </div>
+
+                    </div>
+                </div>
+                <div id="right" style="border-color: gray;">
+                    <div
+                        style=" border-color: gray;border-bottom: 1px solid;height: 50px;background-color: #f6f6f6;line-height: 50px;">
+                        <div>商品小计</div>
+                    </div>
+                    <div
+                        style="border-color: gray;border-bottom: 1px solid; height: 120px;font-size: larger;line-height: 120px;">
+                        <div style="float: left;">商品总价：</div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥{{shopinfogirl.price}}
+                    </div>
+                    <div style="border-color: gray;border-bottom: 1px solid; height: 120px;line-height: 120px;">
+                        <div style="float: left;">PCH5包邮</div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+￥0
+                    </div>
+                    <button @click="submit"
+                        style="width: 100%;height: 20%;background-color: rgb(235, 53, 53);color: white;position: absolute;bottom: 0;">提交订单</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <!-- 尾部 -->
+        <footer class="footer ">
+            <div class="ft-inner w1280">
+                <div class="ft-slo fl">
+                    <img src="https://img.fishfay.com/theme/images/logo/slogan-anta-r.svg" alt="">
+                </div>
+                <div class="ft-main fr">
+                    <ul class="ft-link">
+                        <li>
+                            <a href="#none">安踏海外</a>
+                        </li>
+                        <li>
+                            <a href="#none">安踏投资者关系</a>
+                        </li>
+                    </ul>
+                    <div class="ft-com" style="height: auto;">
+                        <span>Copyright(C) 2020 by www.ANTA.com</span>
+                        <span>©安踏体育用品有限公司版权所有</span>
+                        <a href="#none">营业执照</a>
+                        <a href="#none">开户许可证</a>
+                        <br>
+                        <a href="#none">闽ICP备11020421号-1</a>
+                        <a href="#none">闽公网安备35058202000423号</a>
+                    </div>
+                    <ul class="ft-link">
+                        <li>
+                            <a href="#none">安踏儿童</a>
+                        </li>
+                        <li>
+                            <a href="#none">Fila</a>
+                        </li>
+                        <li>
+                            <a href="#none">Kolon Sport</a>
+                        </li>
+                        <li>
+                            <a href="#none">Descente</a>
+                        </li>
+                        <li>
+                            <a href="#none">Sprandi</a>
+                        </li>
+                        <li>
+                            <a href="#none">Kingkow</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- 侧边 -->
+        <div class="webcover">
+            <div class="goto-top" onclick="goTop()"></div>
+            <a href="cart.html" class="covercar"></a>
+            <a @click="submit()" class="coverkefu"></a>
+        </div>
+
+    </div>
+
+    <script>
+        const userManager = createUserManager();
+        let v = new Vue({
+            el: "#newer",
+            data: {
+                color: "",
+                loginUser: "",
+                isfenlen: [{ id: 2, title: "男子" }, { id: 0, title: "女子" }, { id: 1, title: "儿童" }],
+                shopinfogirl: [],
+            },
+            methods: {
+                send(id) {
+                    window.location = "details.html?pid=" + id;
+                },
+                sendLogin() {
+                    if (this.loginUser != "登入") {
+                    } else {
+                        document.location = "login.html"
+                    }
+                },
+                submit() {
+                    // this.$message({
+                    //     type: "warning",
+                    //     message: "此功能正在维护！"
+                    // })
+                    location.href = "customerService.html"
+                },
+                EN() {
+                    this.$message("暂未开放！敬请期待！")
+                },
+
+            },
+            mounted() {
+                var url = window.location.href;
+                const params = url.split("?")[1];
+                this.pid = params.split("=")[1];
+
+                axios.get("json/details.json").then((a) => {
+                    for (girl of a.data) {
+                        if (girl.id == this.pid) {
+                            this.shopinfogirl = girl;
+                            console.log(this.shopinfogirl);
+                        }
+                    }
+                });
+
+
+
+                if (userManager.loginUser) {
+                    this.color = "red"
+                    this.loginUser = "欢迎" + userManager.loginUser.phone;
+                } else {
+                    this.loginUser = "登入"
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

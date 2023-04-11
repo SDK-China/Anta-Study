@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/cs.css">
+    <script src="js/public.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/element.js"></script>
+    <script src="js/axios.js"></script>
+    <script src="js/userManager.js"></script>
+</head>
+
+<body>
+    <div id="cart">
+        <!-- 头 -->
+        <header class="header">
+
+            <!-- 顶部 -->
+            <div class="topheader">
+                <div class="topbarheader fr">
+                    <div class="topbar">
+                        <a :style="'color:'+color+ ';'" @click="sendLogin">{{loginUser}}</a>
+                        &nbsp;或&nbsp;
+                        <a href="./rigester.html">注册</a>
+                        &nbsp;ANTA会员
+                    </div>
+                    <div class="topbar-car">
+                        <a class="topbar-icon"></a>
+                        <i></i>
+                    </div>
+                    <div class="topbar-ser" style="margin-right: 30px;">
+                        <a @click="submit()" class="topbar-icon"></a>
+                    </div>
+                    <div class="topbar-en">
+                        <a @click="EN()" class="topbar-icon">EN</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 导航栏 -->
+            <div class="nav-header">
+
+                <!-- logo -->
+                <div class="logo-header fl" style="margin-left: 126px;">
+                    <div class="logo-inner">
+                        <a href="index.html">
+                            <img src="./img/public/logo-anta-r-02.svg" alt="">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 文字 -->
+                <ul class="nav-list fr">
+
+                    <li class="nav-item" v-for="tl in isfenlen" @click="send(tl.id)">
+                        <a>{{tl.title}}</a>
+                    </li>
+
+                    <li class="nav-item last">
+
+                    </li>
+                    <div class="nav-sear">
+                        <a class="nav-btn"></a>
+                        <input type="text" placeholder="搜索" autocomplete="off" class="nav-input">
+                    </div>
+                </ul>
+            </div>
+        </header>
+
+
+        <!-- 内容 -->
+        <div class="main-cont">
+            <div class="page-cont">
+                <div class="cart-main">
+                    <h3 class="cart-title">
+                        <span>我的购物车</span>
+                        <i class="total-num">共 {{this.spnumDisplay}} 件</i>
+                    </h3>
+                    <div class="cart-top">
+                        <label for="" class="checkbox-label checkbox-all-t">
+                            <input name="check1" @click="checkAll1()" type="checkbox" class="checkbox-input">
+                            <!-- <i></i> -->
+                            <span>全选</span>
+                        </label>
+                    </div>
+                    <!-- 购物车列表 -->
+                    <div class="cart-tabel-div">
+                        <table class="cart-table carts-tab" v-for="(pro,index) in res" :key="index">
+                            <tr class="goods-item">
+                                <td class="td-check">
+                                    <label for="" class="checkbox-label">
+                                        <input name="check" @click="cancelcheckAll(index)" type="checkbox"
+                                            class="checkbox-input">
+                                        <i></i>
+                                    </label>
+                                </td>
+
+
+                                <td class="td-img">
+                                    <a>
+                                        <img :src="res[index].img" alt="商品信息">
+                                    </a>
+                                </td>
+                                <td class="td-infos">
+                                    <div class="td-infos-top">
+                                        <div class="fl">
+                                            <h5>{{res[index].context}}</h5>
+
+                                        </div>
+                                        <div class="fr">
+                                            <span class="infos-price">￥{{res[index].price}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="td-infos-bot" :key>
+                                        <p class="fl">
+                                            <span>数量:</span>
+                                            <a @click="spnumSub(index)" class="num-minus">-</a>
+                                            <input type="number" class="num-input" :value="res[index].spnum">
+                                            <a @click="spnumAdd(index)" class="num-plus">+</a>
+                                        </p>
+                                        <p class="fr">
+                                            <a @click="deletesp(index)" class="delete-one">删除</a>
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 结算 -->
+        <div class="cart-foot">
+            <div class="sum-main w-1280">
+                <div class="sum-infos fl">
+                    <div class="sum-oper fl">
+                        <label for="" class="checkbox-label checkbox-all-b">
+                            <input name="check2" @click="checkAll2()" type="checkbox" class="checkbox-input">
+                            <!-- <i></i> -->
+                            <span>全选商品</span>
+                        </label>
+                    </div>
+                    <div class="sum-total fr">
+                        <span>总计:{{this.spnumDisplay}}件</span>
+                        <span class="price">￥{{this.total}}</span>
+                    </div>
+                </div>
+                <div class="sum-to-set fl">
+                    <a @click="submit()" href="javascript:void(0)" class="btn-to-set">结算</a>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- 尾部 -->
+        <footer class="footer ">
+            <div class="ft-inner w1280">
+                <div class="ft-slo fl">
+                    <img src="./img/public/slogan-anta-r.svg" alt="">
+                </div>
+                <div class="ft-main fr">
+                    <ul class="ft-link">
+                        <li>
+                            <a>安踏海外</a>
+                        </li>
+                        <li>
+                            <a>安踏投资者关系</a>
+                        </li>
+                    </ul>
+                    <div class="ft-com" style="height: auto;">
+                        <span>Copyright(C) 2020 by www.ANTA.com</span>
+                        <span>©安踏体育用品有限公司版权所有</span>
+                        <a>营业执照</a>
+                        <a>开户许可证</a>
+                        <br>
+                        <a>闽ICP备11020421号-1</a>
+                        <a>闽公网安备35058202000423号</a>
+                    </div>
+                    <ul class="ft-link">
+                        <li>
+                            <a>安踏儿童</a>
+                        </li>
+                        <li>
+                            <a>Fila</a>
+                        </li>
+                        <li>
+                            <a>Kolon Sport</a>
+                        </li>
+                        <li>
+                            <a>Descente</a>
+                        </li>
+                        <li>
+                            <a>Sprandi</a>
+                        </li>
+                        <li>
+                            <a>Kingkow</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+
+
+        <!-- 侧边 -->
+        <div class="webcover">
+            <div onclick="goTop()" class="goto-top"></div>
+            <a href="cart.html" class="covercar"></a>
+            <a @click="submit()" class="coverkefu"></a>
+        </div>
+    </div>
+    <script>
+        const userManager = createUserManager();
+        var cart = new Vue({
+            el: '#cart',
+            data() {
+                return {
+                    snum: "",
+                    loginUser: null,
+                    color: "",
+                    total: 0,
+                    ItemQuantity: 0,
+                    sparray: [],
+                    res: [],
+                    isfenlen: [{ id: 2, title: "男子" }, { id: 0, title: "女子" }, { id: 1, title: "儿童" }],
+                    spnumDisplay: 0,
+                }
+            },
+            methods: {
+                //显示分类用
+                send(id) {
+                    window.location = "list.html?tid=" + id
+                },
+                //登录
+                sendLogin() {
+                    if (this.loginUser != "登入") {
+
+                    } else {
+                        this.openLogin()
+                    }
+                },
+                //购物车价格总价
+                totalPrice() {
+                    this.ItemQuantity = this.sparray.length;
+                    this.total = 0;
+                    for (var i = 0; i < this.ItemQuantity; i++) {
+                        Number(this.total);
+                        Number(this.sparray[i].price);
+                        this.total = this.sparray[i].price + this.total;
+                        console.log(this.total);
+                    }
+
+                },
+                //删除当前商品
+                deletesp(index) {
+                    this.res.splice(index, 1);
+                    //计算商品价格
+                    this.ItemQuantity = this.res.length;
+                    this.total = 0;
+                    for (var i = 0; i < this.ItemQuantity; i++) {
+                        Number(this.total);
+                        Number(this.res[i].price);
+                        this.total = (this.res[i].price * this.res[i].spnum) + this.total;
+
+                    }
+                    //删完后传回浏览器删除
+                    var a = JSON.stringify(this.res)
+                    localStorage.setItem('girl', a)
+                },
+
+                //全选商品1
+                checkAll1() {
+
+                    var checkboxs = document.getElementsByName("check");
+                    var checkboxs1 = document.getElementsByName("check1");
+                    var checkboxs2 = document.getElementsByName("check2");
+
+                    for (var i = 0; i < 1; i++) {
+                        if (checkboxs1[i].checked == true) {
+                            for (var i = 0; i < checkboxs.length; i++) {
+                                checkboxs[i].checked = true;
+                            }
+                        } else {
+                            for (var i = 0; i < checkboxs.length; i++) {
+                                checkboxs[i].checked = false;
+                            }
+                        }
+                    }
+                    for (var i = 0; i < 1; i++) {
+                        if (checkboxs1[i].checked == false) {
+                            checkboxs2[i].checked = false;
+
+                        } else {
+                            checkboxs2[i].checked = true;
+                        }
+                    }
+                },
+
+                //全选商品2
+                checkAll2() {
+                    var checkboxs = document.getElementsByName("check");
+                    var checkboxs1 = document.getElementsByName("check1");
+                    var checkboxs2 = document.getElementsByName("check2");
+                    for (var i = 0; i < 1; i++) {
+                        if (checkboxs2[i].checked == true) {
+                            for (var i = 0; i < checkboxs.length; i++) {
+                                checkboxs[i].checked = true;
+                            }
+                        } else {
+                            for (var i = 0; i < checkboxs.length; i++) {
+                                checkboxs[i].checked = false;
+                            }
+                        }
+                    }
+                    for (var i = 0; i < 1; i++) {
+                        if (checkboxs2[i].checked == false) {
+                            checkboxs1[i].checked = false;
+
+                        } else {
+                            checkboxs1[i].checked = true;
+                        }
+                    }
+                },
+                //商品取消选中时全选取消
+                cancelcheckAll(index) {
+                    var checkboxs = document.getElementsByName("check");
+                    var checkboxs1 = document.getElementsByName("check1");
+                    var checkboxs2 = document.getElementsByName("check2");
+                    if (checkboxs[index].checked == false) {
+                        checkboxs1[0].checked = false;
+                        checkboxs2[0].checked = false;
+                    } else {
+                        if (this.res.reduce((a, b, index) => a + +checkboxs[index].checked, 0) === this.res.length) {
+                            checkboxs1[0].checked = true;
+                            checkboxs2[0].checked = true;
+                        } else {
+                        }
+
+                    }
+
+
+                },
+
+                //添加商品
+                spnumAdd(index) {
+                    console.log("增加前的数为", this.res[index].spnum);
+                    var a = 0;
+                    a = Number(this.res[index].spnum) + 1;
+                    this.res[index].spnum = a;
+
+
+                    //计算商品价格
+                    this.ItemQuantity = this.res.length;
+                    this.total = 0;
+                    for (var i = 0; i < this.ItemQuantity; i++) {
+                        Number(this.total);
+                        Number(this.res[i].price);
+                        this.total = (this.res[i].price * this.res[i].spnum) + this.total;
+                    }
+
+                },
+
+                //减少商品
+                spnumSub(index) {
+                    console.log("减少前的数为", this.res[index].spnum);
+                    var a = 0;
+                    if (this.res[index].spnum > 1) {
+                        a = Number(this.res[index].spnum) - 1;
+                        this.res[index].spnum = a;
+                    } else {
+                        this.$message({
+                            type: "warning",
+                            message: "商品数量不能小于1！"
+                        })
+                    }
+                    //计算商品价格
+                    this.ItemQuantity = this.res.length;
+                    this.total = 0;
+                    for (var i = 0; i < this.ItemQuantity; i++) {
+                        Number(this.total);
+                        Number(this.res[i].price);
+                        this.total = (this.res[i].price * this.res[i].spnum) + this.total;
+                    }
+                },
+
+                submit() {
+                    this.$message({
+                        type: "warning",
+                        message: "此功能正在维护！"
+                    })
+                },
+                EN() {
+                    this.$message({
+                        type: "warning",
+                        message: "此功能暂未上线！敬请期待！"
+                    })
+                }
+            },
+            computed: {
+
+            },
+            mounted() {
+                if (userManager.loginUser) {
+                    this.color = "red"
+                    this.loginUser = "欢迎" + userManager.loginUser.phone;
+                } else {
+                    this.loginUser = "登入"
+                }
+
+                if (localStorage.getItem("girl") != null) {
+                    var b = localStorage.getItem("girl");
+                    var res = JSON.parse(b);
+                    this.res = res;
+
+                    //计算商品价格
+                    this.ItemQuantity = this.res.length;
+                    this.total = 0;
+                    for (var i = 0; i < this.ItemQuantity; i++) {
+                        Number(this.total);
+                        Number(this.res[i].price);
+                        this.total = (this.res[i].price * this.res[i].spnum) + this.total;
+                    }
+
+                    //计算商品总数
+                    var spnumm = 0;
+                    for (var i = 0; i < this.res.length; i++) {
+                        spnumm += this.res[i].spnum;
+                    }
+                    this.spnumDisplay = spnumm;
+                    console.log("你的商品总数为" + this.spnumDisplay)
+                } else {
+                    console.log("您的购物车没有任何的数据")
+                }
+
+
+
+
+            }
+        })
+    </script>
+
+</body>
+
+</html>

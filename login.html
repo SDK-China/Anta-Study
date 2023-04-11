@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/cs.css">
+    <script src="js/vue.js"></script>
+    <script src="js/element.js"></script>
+    <link rel="stylesheet" href="css/login.css">
+    <script src="js/userManager.js"></script>
+
+    <script src="js/element.js"></script>
+    <link rel="stylesheet" href="css/cs.css">
+</head>
+
+<body>
+
+    <div id="newer">
+        <!-- 头 -->
+        <header class="header">
+
+            <!-- 顶部 -->
+            <div class="topheader">
+                <div class="topbarheader fr">
+                    <div class="topbar">
+                        <a href="login.html">{{loginUser}}</a>
+                        &nbsp;或&nbsp;
+                        <a href="rigester.html">注册</a>
+                        &nbsp;ANTA会员
+                    </div>
+                    <div class="topbar-car">
+                        <a href="cart.html" class="topbar-icon"></a>
+                        <i></i>
+                    </div>
+                    <div class="topbar-ser" style="margin-right: 30px;">
+                        <a @click="submit()" class="topbar-icon"></a>
+                    </div>
+                    <div class="topbar-en">
+                        <a @click="EN()" href="javascript:void(0)" class="topbar-icon">EN</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 导航栏 -->
+            <div class="nav-header">
+
+                <!-- logo -->
+                <div class="logo-header fl" style="margin-left: 126px;">
+                    <div class="logo-inner">
+                        <a href="javascript:void(0)">
+                            <img src="https://img.fishfay.com/theme/images/logo/logo-anta-r-02.svg" alt="">
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 文字 -->
+                <ul class="nav-list fr">
+                    <li class="nav-item" v-for="tl in isfenlen" @click="send(tl.id)">
+                        <a href="#">{{tl.title}}</a>
+                    </li>
+
+
+                    <li class="nav-item last">
+                        <div class="nav-sear">
+                            <a href="javascript:void(0)" class="nav-btn"></a>
+                            <input type="text" placeholder="搜索" autocomplete="off" class="nav-input">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+
+        <!-- 内容 -->
+
+        <div class="main-cont">
+
+            <div class="back">
+                <div class="back-images">
+                    <img src="./img/37.jpg" alt="">
+                    <img src="./img/38.jpg" alt="">
+                    <img src="./img/43.jpg" alt="">
+                    <img src="./img/44.jpg" alt="">
+
+                    <div class="login-one">
+                        <div class="login-top"></div>
+
+                        <div class="login-bot">
+                            <div class="login-area">
+                                <div class="login-tabs">
+                                    <h6 class="login-active">账号密码登录</h6>
+
+                                </div>
+                            </div>
+                            <form action="" class="login-main">
+                                <div class="login-input">
+                                    <label for="" class="login-user login-phone">
+                                        <input type="text" name="" id="usname" placeholder="手机号码" v-model="phone">
+                                    </label>
+                                    <label for="" class="login-user" style="display: none;">
+                                        <input type="text">
+                                    </label>
+                                    <label for="" class="login-user login-pwd">
+                                        <input type="password" name="" id="password" placeholder="密码"
+                                            v-model="password">
+                                    </label>
+                                </div>
+                                <span id="notice">
+                                </span>
+                                <div class="login-btns">
+                                    <!-- <button class="btnadpt" value="立即登录">立即登录</button> -->
+                                    <a href="#" class="btnadpt" @click="toLogin()">立即登录</a>
+
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="other-login" style="display: block;width: 358px;margin: 0 auto;">
+                            <fieldset class="oth-type">
+                                <legend align="center" class="oth-type-text">其他方式登录</legend>
+                            </fieldset>
+                            <div class="oth-type-link">
+                                <a href="javascript:void(0)" class="icon-type"></a>
+                            </div>
+                        </div>
+
+
+                        <div class="n-links">
+                            <a href="rigester.html" class="outer-link">账号注册</a>
+                            <span>|</span>
+                            <a href="javascript:void(0)" class="outer-link">忘记密码</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- 尾部 -->
+    <footer class="footer ">
+        <div class="ft-inner w1280">
+            <div class="ft-slo fl">
+                <img src="https://img.fishfay.com/theme/images/logo/slogan-anta-r.svg" alt="">
+            </div>
+            <div class="ft-main fr">
+                <ul class="ft-link">
+                    <li>
+                        <a href="javascript:void(0)">安踏海外</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">安踏投资者关系</a>
+                    </li>
+                </ul>
+                <div class="ft-com" style="height: auto;">
+                    <span>Copyright(C) 2020 by www.ANTA.com</span>
+                    <span>©安踏体育用品有限公司版权所有</span>
+                    <a href="javascript:void(0)">营业执照</a>
+                    <a href="javascript:void(0)">开户许可证</a>
+                    <br>
+                    <a href="javascript:void(0)">闽ICP备11020421号-1</a>
+                    <a href="javascript:void(0)">闽公网安备35058202000423号</a>
+                </div>
+                <ul class="ft-link">
+                    <li>
+                        <a href="javascript:void(0)">安踏儿童</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">Fila</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">Kolon Sport</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">Descente</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">Sprandi</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">Kingkow</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- 侧边 -->
+    <div class="webcover">
+        <div class="goto-top"></div>
+        <a href="cart.html" class="covercar"></a>
+        <a @click="submit()" class="coverkefu"></a>
+    </div>
+    </div>
+
+    <script>
+        // function getChange(){
+        //   var phone=document.getElementById("usname").value
+        //   var password=document.getElementById("password").value
+        //   var isphone=/^1[3456789]\d{9}$/;
+        //   if(!phone){
+        //    alert("手机号不能为空")
+        //   }else if(!password){
+        //    alert("密码不能为空")
+        //   }else if(!isphone.test(phone)){
+        //    alert("手机格式有误请重新输入")
+        //    phone=null;
+        //   }else{
+        //     alert("登录成功")
+        //   }
+        // }
+        (() => {
+            const userManager = createUserManager();
+            let v = new Vue({
+                el: "#newer",
+                data: {
+                    loginUser: null,
+                    phone: "",
+                    password: "",
+                    isfenlen: [{ id: 2, title: "男子" }, { id: 0, title: "女子" }, { id: 1, title: "儿童" }]
+                },
+                methods: {
+                    submit() {
+                        this.$message({
+                            type: "warning",
+                            message: "此功能正在维护！"
+                        })
+                    },
+                    EN() {
+                        this.$message("暂未开放！敬请期待！")
+                    },
+                    send(id) {
+                        document.location = "list.html?tid=" + id
+                    },
+                    sendlist(id) {
+                        document.location = "list.html?tid=1"
+                    },
+                    toLogin() {
+                        // var that=this
+                        if (!localStorage.getItem("users")) {
+                            this.$message.error("请注册");
+                            setTimeout(function () {
+                                location.href = "rigester.html"
+                            }, 2000);
+
+                        } else {
+
+
+
+                            var data = window.localStorage.getItem("users");
+                            data = JSON.parse(data);
+                            var flag = false
+                            data.forEach(element => {
+                                console.log(element.phone + "===================");
+                                console.log(this.phone);
+                                if (element.phone == this.phone && element.password == this.password) {
+                                    flag = true
+
+                                } else {
+                                    flag = false
+                                }
+                            });
+                            if (flag) {
+                                setTimeout(this.sendlist, 500)
+                            } else {
+                                alert("登录失败")
+                            }
+                            //添加登录用户
+                            const result = userManager.users.filter(
+                                (e) => e.phone === this.phone
+                            )[0];
+                            if (!result) {
+                                alert("账号不存在");
+                            } else {
+                                if (result.password === this.password) {
+                                    userManager.toLogin(result);
+
+                                } else {
+
+                                }
+                            }
+                        }
+                    },
+                },
+                mounted() {
+                    //判断有没有登录，后加的方法
+                    if (userManager.loginUser) {
+                        this.color = "red"
+                        this.loginUser = "欢迎" + userManager.loginUser.phone;
+                        this.$message.error("您已登录！即将为您跳转到首页！");
+                        setTimeout(function () {
+                            location.href = "index.html"
+                        }, 1500);
+                    } else {
+                        this.loginUser = "登入"
+                    }
+                },
+            })
+        })();
+    </script>
+
+
+
+</body>
+
+</html>
